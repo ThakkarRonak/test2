@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="hello">Welcome!</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+
+
+    <string name="long_String" translatable="false">long_String</string>
+    <string-array name="language_option">
+        <item>English</item>
+        <item>Indonesian</item>
+        <item>Spanish</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username:</string>
+</resources>

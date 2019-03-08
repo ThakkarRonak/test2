@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <ImageView
+
+            android:layout_width="134dp"
+            android:layout_height="113dp"
+            android:id="@+id/iv_img"
+            android:src="@drawable/iconfinder_female_1608695"
+            android:scaleType="centerInside"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"/>
+
+
+    <TextView
+            android:hint="Name"
+            android:layout_width="134dp"
+            android:layout_height="31dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="79dp"
+            android:id="@+id/tv_name"
+            android:layout_marginTop="28dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="171dp"/>
+    <TextView
+            android:hint="Eamil"
+            android:layout_width="134dp"
+            android:layout_height="31dp"
+            android:id="@+id/tv_email"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginTop="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="81dp"/>
+    <Button
+            android:text="+"
+            android:layout_width="51dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/tv_name"
+            android:id="@+id/btn_add"/>
+    <Button
+            android:text="-"
+            android:layout_width="51dp"
+            android:layout_height="38dp"
+            android:layout_alignTop="@+id/tv_email"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/btn_remove"
+            android:layout_marginTop="-3dp"
+            android:layout_marginEnd="3dp"/>
+    <TextView
+            android:hint="Address"
+            android:layout_width="289dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/tv_adddress"
+            android:layout_marginTop="134dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="55dp"/>
+
+</RelativeLayout>

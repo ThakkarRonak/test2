@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.paresh.test">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".Test2.Test2Activity"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".MediaPlayer.MusicPlayerActivity">
+        </activity>
+        <activity
+                android:name=".main.activity.re.recycler_test.activity.MainActivity"
+                android:screenOrientation="portrait"/>
+        <activity android:name=".main.activity.re.recycler_test.splash.SplashActivity"/>
+        <activity android:name=".listview.ListActivity"/>
+        <activity android:name=".toolbar.ToolbarActivity"/>
+        <activity android:name=".CoordinatorLayout.CoordinatorLayoutActivity"/>
+        <activity android:name=".Dilogs.AlertDilog_Activity"/>
+        <activity android:name=".Fragment.FragmentActivity"/>
+        <activity android:name=".TabLayout.TabLayoutActivity"/>
+        <activity android:name=".Lang_Localization.LocalizationActivity"/>
+        <activity android:name=".SQLite_CRUD.DbOperation_crudActivity"/>
+        <activity android:name=".SharedPreferences.SharedprefActivity"/>
+        <activity android:name=".AsyncTask.AsyncTaskActivity"/>
+        <activity android:name=".Handler.HandlerActivity"/>
+        <activity android:name=".BoundService.BoundServiceActivity"/>
+
+        <service
+                android:name=".BoundService.Bound"
+                android:enabled="true"
+                android:exported="true"/>
+
+        <activity android:name=".AlramManager.AlaramManagerActivity"/>
+
+        <receiver
+                android:name=".AlramManager.MyBroadcastReceiver"
+                android:enabled="true"
+                android:exported="true"/>
+
+        <activity android:name=".JobScheduler.JobSchedulerActivity"/>
+
+        <service
+                android:name=".JobScheduler.SchedualjobExample"
+                android:enabled="true"
+                android:exported="true"
+                android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <activity android:name=".WorkManager.WorkmanagerexampleActivity"/>
+        <activity android:name=".BroadcastReceiver.BroadCastReceiverActivity"/>
+
+        <receiver
+                android:name=".BroadcastReceiver.MyBroadcastReceiver"
+                android:enabled="true"
+                android:exported="true"/>
+
+        <activity android:name=".BroadcastReceiver.Main2Activity"/>
+        <activity android:name=".Notification.NotificationActivity"/>
+        <activity android:name=".Notification.NotificationChanelActivity"/>
+        <activity android:name=".MediaPlayer.MediaPlayerActivity"/>
+        <activity android:name=".Notification.NotificationWithReplyActivity">
+
+            <!-- android:launchMode="singleTop"> -->
+
+        </activity>
+    </application>
+
+</manifest>
