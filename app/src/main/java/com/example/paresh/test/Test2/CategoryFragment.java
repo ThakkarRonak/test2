@@ -1,5 +1,7 @@
 package com.example.paresh.test.Test2;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,19 +15,37 @@ import com.example.paresh.test.R;
 
 import java.util.ArrayList;
 
+import static com.example.paresh.test.Test2.LoginActivity.EMAIL;
+import static com.example.paresh.test.Test2.LoginActivity.PSW;
+import static com.example.paresh.test.Test2.LoginActivity.myPreference;
+
 public class CategoryFragment extends Fragment {
     RecyclerView rvCategory;
     MenuAdapter adapter;
     ArrayList<DataModel> menulist = new ArrayList<DataModel>();
 
     int parentCatId = 0;
+    String emailId = "r@gmail.com";
     DbHelper helper;
     Test2Activity mActivity;
+    SharedPreferences preferences;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = (Test2Activity) getActivity();
+
+
+
+        preferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+
+        if (preferences.contains(EMAIL) && preferences.contains(PSW)) {
+            emailId = preferences.getString(EMAIL, "");
+
+        }
+
+
     }
 
     @Override
@@ -62,7 +82,7 @@ public class CategoryFragment extends Fragment {
     private void setCategoryData() {
 
         menulist.clear();
-        menulist.addAll(helper.getalldata(parentCatId));
+        menulist.addAll(helper.getalldata(parentCatId, emailId));
 
         if (adapter == null) {
             adapter = new MenuAdapter(menulist, mActivity, this);
@@ -80,17 +100,6 @@ public class CategoryFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    /*  @Override
-      public boolean onOptionsItemSelected(MenuItem item) {
-          switch (item.getItemId()) {
-
-              case R.id.item_add:
-                  showAlert(parentCatId);
-                  return true;
-          }
-          return super.onOptionsItemSelected(item);
-      }
-  */
     public void showAlert(final int catId) {
 
         final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
@@ -105,7 +114,7 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String item = etData.getText().toString();
-                helper.insertCategory(catId, item);
+                helper.insertCategory(catId, item,emailId);
                 adapter.notifyDataSetChanged();
                 helper.close();
                 alert.dismiss();
@@ -117,7 +126,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
 
                 String item = etData.getText().toString();
-                helper.insertCategory(catId, item);
+                helper.insertCategory(catId, item,emailId);
                 adapter.notifyDataSetChanged();
                 helper.close();
                 alert.dismiss();

@@ -21,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String CATEGORY_ID = "ITEM_ID";
     public static final String CATEGORY_NAME = "ITEM_NAME";
     public static final String PARENT_CAT_ID = "parent_cat_id";
+    public static final String EMAIL_ID = "EMAIL_ID";
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -30,17 +31,21 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE " + TABLE_USER + " (EMAIL TEXT PRIMARY KEY ,PSW INTEGER)");
-        db.execSQL("CREATE TABLE " + TABLE_CATEGOTY + " (" + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CATEGORY_NAME + " TEXT," + PARENT_CAT_ID + " INTEGER )");
+//        db.execSQL("CREATE TABLE " + TABLE_USER + " (EMAIL TEXT PRIMARY KEY ,PSW INTEGER)");
+        db.execSQL("CREATE TABLE " + TABLE_CATEGOTY + " (" + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + CATEGORY_NAME + " TEXT,"
+                + PARENT_CAT_ID + " INTEGER ,"
+                + EMAIL_ID + " INTEGER)");
     }
 
 
-    public boolean insertCategory(int parentCatId, String itemName) {
+    public boolean insertCategory(int parentCatId, String itemName,String emailId) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(CATEGORY_NAME, itemName);
         contentValues.put(PARENT_CAT_ID, parentCatId);
+        contentValues.put(EMAIL_ID,emailId);
 
         long result = db.insert(TABLE_CATEGOTY, null, contentValues);
         if (result == -1)
@@ -64,13 +69,16 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public List<DataModel> getalldata(int parentCateId) {
+    public List<DataModel> getalldata(int parentCateId,String emailId) {
         List<DataModel> list = new ArrayList<>();
 
         SQLiteDatabase db = this.getWritableDatabase();
         String s[] = {PARENT_CAT_ID + " = " + parentCateId};
 
-        Cursor cursor = db.rawQuery("select * from " + TABLE_CATEGOTY + " WHERE " + PARENT_CAT_ID + " = '" + parentCateId + "'", null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE_CATEGOTY + " WHERE "
+                + PARENT_CAT_ID + " = '" + parentCateId
+                + "' AND "
+                +  EMAIL_ID + " = '" +emailId  , null);
 
         if (cursor.moveToFirst()) {
             do {

@@ -17,6 +17,7 @@ public class MenuFragment extends Fragment {
     RecyclerView rvmenu_menu;
     MyAdapter adapter1;
     ArrayList<DataModel> menulist1 = new ArrayList<DataModel>();
+    String EmailId = "r@gmail.com";
 
     int parentCatId = 0;
     DbHelper helper;
@@ -61,7 +62,7 @@ public class MenuFragment extends Fragment {
     private void setMenuData() {
 
         menulist1.clear();
-        menulist1.addAll(helper.getalldata(parentCatId));
+        menulist1.addAll(helper.getalldata(parentCatId, EmailId));
 
         if (adapter1 == null) {
             adapter1 = new MyAdapter(menulist1, mActivity);

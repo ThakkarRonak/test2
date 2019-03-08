@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.paresh.test.R;
 
-import java.util.Objects;
-
 public class LoginActivity extends AppCompatActivity {
     public static final String myPreference = "mypref";
     public static final String EMAIL = "email_key";
@@ -26,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences;
     EditText etEmail, etPsw;
     CheckBox checkBox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         if (preferences.contains(EMAIL) && preferences.contains(PSW)) {
             checkBox.setChecked(true);
             etEmail.setText(preferences.getString(EMAIL, ""));
-            etPsw.setText(preferences.getString(PSW, ""));
+
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();

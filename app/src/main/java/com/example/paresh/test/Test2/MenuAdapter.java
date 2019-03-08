@@ -1,5 +1,6 @@
 package com.example.paresh.test.Test2;
 
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +20,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
     CategoryFragment categoryFragment;
     private ArrayList<DataModel> menuList;
     private Test2Activity activity;
+    SharedPreferences preferences;
+
 
     public MenuAdapter(ArrayList<DataModel> menulist, Test2Activity mActivity) {
         this.menuList = menulist;
