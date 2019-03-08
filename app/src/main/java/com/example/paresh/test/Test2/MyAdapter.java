@@ -33,22 +33,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         final DataModel model = menuList.get(i);
-
+        holder.tvData.setTag(i);
         holder.tvData.setText(model.getCategoryName());
-
-
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (childCatCount == 0) {
-
-
-                    menuFragment.showAlert(model.getCategoryID());
-                } else {
-                    activity.addCategoryFragment(model.getCategoryID());
-                }
-            }
-        });*/
     }
 
     @Override
@@ -63,13 +49,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
 
             tvData = itemView.findViewById(R.id.tvData);
-//            tvClick =itemView.findViewById(R.id.tvClick);
             tvData.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
+//            activity.addView(menuList.get((Integer) v.getTag()));
+//            activity.menuAdapter.notifyDataSetChanged();
+
+
 
         }
     }

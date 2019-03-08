@@ -76,13 +76,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         if (validation.isValidname(name)) {
-            alertDilogbox.showAlert(this, "Please enter valid name");
+            alertDilogbox.showAlert001(this, "Please enter valid name");
             return false;
         } else if (validation.isValidEmail(email)) {
-            alertDilogbox.showAlert(this, "Please enter valid  Email");
+            alertDilogbox.showAlert001(this, "Please enter valid  Email");
             return false;
         } else if (validation.isvalidaddress(address)) {
-            alertDilogbox.showAlert(this, "Please enter valid address");
+            alertDilogbox.showAlert001(this, "Please enter valid address");
             return false;
         } else { }
         return true;

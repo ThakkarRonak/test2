@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.example.paresh.test.R;
 
 import java.util.ArrayList;
@@ -30,10 +32,6 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
-        /*MenuAdapter menuAdapter =new MenuAdapter(menulist1);
-        rvMenu.setAdapter(menuAdapter);*/
-
         return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 
@@ -76,4 +74,4 @@ public class MenuFragment extends Fragment {
         }
     }
 
-  }
+}

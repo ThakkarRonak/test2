@@ -8,7 +8,7 @@ import android.support.v7.app.AlertDialog;
 
 public class alertDilogbox {
 
-    public static void showAlert(Context mContext, String message) {
+    public static void showAlert001(Context mContext, String message) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage(message);

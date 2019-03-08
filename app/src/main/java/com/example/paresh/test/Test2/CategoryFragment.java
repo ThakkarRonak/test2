@@ -9,11 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
 import android.widget.EditText;
-import android.widget.Toast;
 import com.example.paresh.test.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CategoryFragment extends Fragment {
     RecyclerView rvCategory;
@@ -34,9 +32,6 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
-        /*MenuAdapter menuAdapter =new MenuAdapter(menulist1);
-        rvMenu.setAdapter(menuAdapter);*/
 
         return inflater.inflate(R.layout.fragment_category, container, false);
     }
@@ -59,9 +54,6 @@ public class CategoryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         rvCategory.setLayoutManager(new LinearLayoutManager(getContext()));
-//        tvMsg = (getView()).findViewById(R.id.tvmsg);
-//        tvClick = (getView()).findViewById(R.id.tvClick);
-
         helper = new DbHelper(getContext());
 
         setCategoryData();
@@ -88,52 +80,49 @@ public class CategoryFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    /*  @Override
+      public boolean onOptionsItemSelected(MenuItem item) {
+          switch (item.getItemId()) {
 
-            case R.id.item_add:
-                showAlert(parentCatId);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
+              case R.id.item_add:
+                  showAlert(parentCatId);
+                  return true;
+          }
+          return super.onOptionsItemSelected(item);
+      }
+  */
     public void showAlert(final int catId) {
 
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         dialog.setTitle("Add New");
         LayoutInflater inflater = this.getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.custom_dailog, null);
         dialog.setView(alertLayout);
-
-        final EditText etData = alertLayout.findViewById(R.id.etData);
-        View btnAdd = alertLayout.findViewById(R.id.btnAdd);
-        View btnCancel = alertLayout.findViewById(R.id.btnCancel);
         final AlertDialog alert = dialog.show();
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        final EditText etData = alertLayout.findViewById(R.id.etData);
+        alertLayout.findViewById(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Close", Toast.LENGTH_SHORT).show();
+                String item = etData.getText().toString();
+                helper.insertCategory(catId, item);
+                adapter.notifyDataSetChanged();
+                helper.close();
                 alert.dismiss();
+                setCategoryData();
             }
         });
-
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        alertLayout.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String item = etData.getText().toString();
-                    helper.insertCategory(catId, item);
-//                helper.getalldata();
+                helper.insertCategory(catId, item);
                 adapter.notifyDataSetChanged();
                 helper.close();
                 alert.dismiss();
-
                 setCategoryData();
             }
         });
-        dialog.setCancelable(true);
     }
 }
