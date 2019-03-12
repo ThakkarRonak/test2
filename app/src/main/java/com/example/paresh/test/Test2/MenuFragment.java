@@ -54,7 +54,6 @@ public class MenuFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         rvmenu_menu.setLayoutManager(new LinearLayoutManager(getContext()));
-
         helper = new DbHelper(getContext());
         setMenuData();
     }

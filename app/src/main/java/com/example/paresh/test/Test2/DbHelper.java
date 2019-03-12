@@ -15,9 +15,7 @@ import static android.support.constraint.Constraints.TAG;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Categoty1.db";
-    public static final String TABLE_USER = "user_table";
     public static final String TABLE_CATEGOTY = "categoty_table";
-
     public static final String CATEGORY_ID = "ITEM_ID";
     public static final String CATEGORY_NAME = "ITEM_NAME";
     public static final String PARENT_CAT_ID = "parent_cat_id";
@@ -35,7 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_CATEGOTY + " (" + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + CATEGORY_NAME + " TEXT,"
                 + PARENT_CAT_ID + " INTEGER ,"
-                + EMAIL_ID + " INTEGER)");
+                + EMAIL_ID + " TEXT)");
     }
 
 
@@ -52,6 +50,7 @@ public class DbHelper extends SQLiteOpenHelper {
             return false;
         else
             return true;
+
     }
 
     public Cursor getData() {
@@ -76,9 +75,9 @@ public class DbHelper extends SQLiteOpenHelper {
         String s[] = {PARENT_CAT_ID + " = " + parentCateId};
 
         Cursor cursor = db.rawQuery("select * from " + TABLE_CATEGOTY + " WHERE "
-                + PARENT_CAT_ID + " = '" + parentCateId
-                + "' AND "
-                +  EMAIL_ID + " = '" +emailId  , null);
+                + PARENT_CAT_ID + " = " + parentCateId
+                + " AND "
+                +  EMAIL_ID + " = '" +emailId  +"'", null);
 
         if (cursor.moveToFirst()) {
             do {

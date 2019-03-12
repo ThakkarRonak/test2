@@ -16,19 +16,27 @@
             android:contentInsetStart="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp">
-        <!--app:contentInsetStartWithNavigation="0dp"-->
-
 
         <RelativeLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+            <ImageView
+                    android:src="@drawable/three_lines"
+                    android:id="@+id/img_logout"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"/>
+
             <TextView
                     android:id="@+id/txttitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textSize="20dp"
                     android:text="TEST"/>
 
             <ImageButton
@@ -36,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-
+                    android:layout_centerVertical="true"
                     android:src="@drawable/ic_add__24dp"/>
 
         </RelativeLayout>
@@ -45,9 +53,9 @@
 
     <LinearLayout
             android:orientation="horizontal"
-                  android:layout_height="match_parent"
-                  android:layout_width="match_parent"
-                  tools:context=".Test2.Test2Activity">
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:context=".Test2.Test2Activity">
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/menu_recyclerview"

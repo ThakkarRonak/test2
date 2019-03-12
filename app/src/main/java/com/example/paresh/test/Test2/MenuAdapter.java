@@ -52,12 +52,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
             holder.tvData.setText(model.getCategoryName());
             holder.img_add.setVisibility(View.VISIBLE);
 
-            activity.setTitleText(holder.tvData.getText());
         } else {
             holder.imag_see.setVisibility(View.VISIBLE);
             holder.img_add.setVisibility(View.GONE);
             holder.tvData.setText(model.getCategoryName());
         }
+
     }
 
     @Override

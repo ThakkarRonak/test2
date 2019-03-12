@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    MenuFragment menuFragment;
     private ArrayList<DataModel> menuList;
     private Test2Activity activity;
+    DataModel model;
 
     public MyAdapter(ArrayList<DataModel> mMenulist, Test2Activity test2Activity) {
         this.menuList = mMenulist;
@@ -32,9 +32,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
-        final DataModel model = menuList.get(i);
+        model = menuList.get(i);
         holder.tvData.setTag(i);
         holder.tvData.setText(model.getCategoryName());
+
+//        activity.txttitle.setText(model.getCategoryName());
     }
 
     @Override
@@ -55,11 +57,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @Override
         public void onClick(View v) {
             Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
-//            activity.addView(menuList.get((Integer) v.getTag()));
-//            activity.menuAdapter.notifyDataSetChanged();
-
-
-
         }
     }
 

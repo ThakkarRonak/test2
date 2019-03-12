@@ -16,7 +16,6 @@ import com.example.paresh.test.R;
 import java.util.ArrayList;
 
 import static com.example.paresh.test.Test2.LoginActivity.EMAIL;
-import static com.example.paresh.test.Test2.LoginActivity.PSW;
 import static com.example.paresh.test.Test2.LoginActivity.myPreference;
 
 public class CategoryFragment extends Fragment {
@@ -30,21 +29,10 @@ public class CategoryFragment extends Fragment {
     Test2Activity mActivity;
     SharedPreferences preferences;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = (Test2Activity) getActivity();
-
-
-
-        preferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
-
-        if (preferences.contains(EMAIL) && preferences.contains(PSW)) {
-            emailId = preferences.getString(EMAIL, "");
-
-        }
-
 
     }
 
@@ -86,7 +74,6 @@ public class CategoryFragment extends Fragment {
 
         if (adapter == null) {
             adapter = new MenuAdapter(menulist, mActivity, this);
-
             rvCategory.setAdapter(adapter);
         } else {
             adapter.notifyDataSetChanged();
@@ -109,12 +96,15 @@ public class CategoryFragment extends Fragment {
         dialog.setView(alertLayout);
         final AlertDialog alert = dialog.show();
 
+        final SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+
         final EditText etData = alertLayout.findViewById(R.id.etData);
         alertLayout.findViewById(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String item = etData.getText().toString();
-                helper.insertCategory(catId, item,emailId);
+                String email = sharedPreferences.getString(EMAIL, "");
+                helper.insertCategory(catId, item, email);
                 adapter.notifyDataSetChanged();
                 helper.close();
                 alert.dismiss();
@@ -126,7 +116,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
 
                 String item = etData.getText().toString();
-                helper.insertCategory(catId, item,emailId);
+                helper.insertCategory(catId, item, emailId);
                 adapter.notifyDataSetChanged();
                 helper.close();
                 alert.dismiss();

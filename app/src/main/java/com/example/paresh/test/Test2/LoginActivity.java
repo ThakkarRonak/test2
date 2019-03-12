@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPsw;
     CheckBox checkBox;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +62,13 @@ public class LoginActivity extends AppCompatActivity {
         final String email = etEmail.getText().toString();
         final String psw = etPsw.getText().toString();
 
-        if ((email.equals("jugal@gmail.com") && psw.equals("123456")) || (email.equals("r@gmail.com") && psw.equals("111"))) {
+
+//        if (preferences.contains(EMAIL) && preferences.contains(PSW)) {
+//            etEmail = preferences.getString(EMAIL, "");
+//        }
+
+//        if ((email.equals("jugal@gmail.com") && psw.equals("123456")) || (email.equals("r@gmail.com") && psw.equals("111"))) {
+        if ((email.equals(email) && psw.equals("123456"))) {
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(EMAIL, email);

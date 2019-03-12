@@ -1,5 +1,8 @@
 package com.example.paresh.test.Test2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.paresh.test.R;
 
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ public class Test2Activity extends AppCompatActivity {
     MyAdapter adapter;
     MenuAdapter menuAdapter;
     CategoryFragment categoryFragment = new CategoryFragment();
+    TextView txttitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +38,11 @@ public class Test2Activity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Test2Activity.this, LinearLayoutManager.VERTICAL, false);
         menu_recyclerview.setLayoutManager(linearLayoutManager);
         adapter = new MyAdapter(mMenulist, Test2Activity.this);
-        menuAdapter = new MenuAdapter(mMenulist1,Test2Activity.this);
+        menuAdapter = new MenuAdapter(mMenulist1, Test2Activity.this);
         menu_recyclerview.setAdapter(adapter);
         addCategoryFragment(0);
+
+        txttitle = findViewById(R.id.txttitle);
 
         findViewById(R.id.img_add_title).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +56,32 @@ public class Test2Activity extends AppCompatActivity {
                 }
             }
         });
+        findViewById(R.id.img_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AlertDialog.Builder(Test2Activity.this)
+                        .setTitle("Are You Sure You want Logout")
+                        .setMessage("Logout ?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(Test2Activity.this, "Yes on Logout", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Test2Activity.this,LoginActivity.class));
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(Test2Activity.this, "NO On Logout", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
+
+            }
+        });
+
+
+
     }
 
     public boolean isFragmentPresent(String tag) {
@@ -90,6 +123,8 @@ public class Test2Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         removeView(1);
+        txttitle.setText(adapter.model.getCategoryName());
+
     }
 
     public void addView(DataModel dataModel) {
@@ -97,16 +132,12 @@ public class Test2Activity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
     public void removeView(int poaition) {
-        if(mMenulist.size()==1) return;
+        if (mMenulist.size() == 1) return;
 
         mMenulist.remove(1);
         adapter.notifyDataSetChanged();
         mMenulist.size();
     }
-
-    public void setTitleText(CharSequence text) {
-        ((TextView) findViewById(R.id.txttitle)).setText(text);
-    }
-
 }
